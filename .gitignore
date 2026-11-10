@@ -1,0 +1,16 @@
+FRONTEND/my_app/dist/*
+FRONTEND/my_app/node_modules/*
+
+*.env
+
+*/__pycache__/*
+
+*/try.py
+
+.vscode/*
+
+*.txt
+*.svg
+
+*.venv
+*venv

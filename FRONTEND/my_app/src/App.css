@@ -1,0 +1,316 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap");
+
+:root {
+  --bg: #f5f6fb;
+  --bg-glow-1: rgba(99, 102, 241, 0.16);
+  --bg-glow-2: rgba(14, 165, 233, 0.14);
+  --surface: rgba(255, 255, 255, 0.85);
+  --surface-solid: #ffffff;
+  --ink: #161a2e;
+  --ink-soft: #3d4460;
+  --muted: #7a819c;
+  --line: #e3e6f2;
+  --line-strong: #cdd2e6;
+  --accent: #5b5bd6;
+  --accent-2: #3b82f6;
+  --accent-soft: rgba(91, 91, 214, 0.14);
+  --accent-ink: #ffffff;
+  --code-bg: #f0f2fa;
+  --danger: #d6405a;
+  --shadow: 0 1px 2px rgba(22, 26, 46, 0.04), 0 12px 32px -8px rgba(40, 44, 100, 0.14);
+  --radius: 14px;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0c0e1a;
+    --bg-glow-1: rgba(99, 102, 241, 0.22);
+    --bg-glow-2: rgba(14, 165, 233, 0.12);
+    --surface: rgba(24, 28, 50, 0.8);
+    --surface-solid: #181c32;
+    --ink: #eef0fa;
+    --ink-soft: #c3c8df;
+    --muted: #8b92b0;
+    --line: #272c4a;
+    --line-strong: #363c60;
+    --accent: #8b8bf5;
+    --accent-2: #60a5fa;
+    --accent-soft: rgba(139, 139, 245, 0.2);
+    --accent-ink: #0c0e1a;
+    --code-bg: #1e2340;
+    --danger: #ff7a90;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 16px 40px -10px rgba(0, 0, 0, 0.55);
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-font-smoothing: antialiased; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  font-family: "Manrope", system-ui, sans-serif;
+  line-height: 1.6;
+  background:
+    radial-gradient(60rem 36rem at 12% -10%, var(--bg-glow-1), transparent 60%),
+    radial-gradient(50rem 32rem at 100% 0%, var(--bg-glow-2), transparent 55%),
+    var(--bg);
+  background-attachment: fixed;
+}
+
+/* ---------- Layout ---------- */
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  padding: 2rem 1rem;
+  transition: padding 0.3s ease;
+}
+.page.has-result {
+  justify-content: flex-start;
+  padding-top: 3.5rem;
+  padding-bottom: 5rem;
+}
+
+/* ---------- Form card ---------- */
+.form {
+  width: 100%;
+  max-width: 540px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 2.25rem clamp(1.25rem, 5vw, 2.5rem) 2.25rem;
+  background: var(--surface);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+}
+
+.form h1 {
+  margin: 0 0 1.25rem;
+  text-align: center;
+  font-size: clamp(1.6rem, 4vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.form label {
+  margin-top: 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  letter-spacing: 0.005em;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  font: inherit;
+  font-size: 0.97rem;
+  color: var(--ink);
+  background: var(--surface-solid);
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+input::placeholder { color: var(--muted); }
+input:hover, select:hover { border-color: var(--accent); }
+input:focus-visible,
+select:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 2.6rem;
+  cursor: pointer;
+  text-transform: capitalize;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%237a819c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+}
+
+button {
+  position: relative;
+  margin-top: 1.6rem;
+  padding: 0.95rem 1.25rem;
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.98rem;
+  letter-spacing: 0.01em;
+  color: var(--accent-ink);
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px -8px var(--accent);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  filter: brightness(1.06);
+  box-shadow: 0 12px 24px -8px var(--accent);
+}
+button:active:not(:disabled) { transform: translateY(0); }
+button:focus-visible {
+  outline: 3px solid var(--accent-soft);
+  outline-offset: 3px;
+}
+button:disabled { opacity: 0.75; cursor: progress; }
+
+/* CSS-only spinner while rendering */
+button:disabled::after {
+  content: "";
+  display: inline-block;
+  width: 0.9em;
+  height: 0.9em;
+  margin-left: 0.6em;
+  vertical-align: -0.1em;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.error {
+  margin: 0.75rem 0 0;
+  padding: 0.65rem 0.85rem;
+  font-size: 0.9rem;
+  color: var(--danger);
+  background: color-mix(in srgb, var(--danger) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--danger) 30%, transparent);
+  border-radius: 10px;
+}
+
+/* ---------- Output document ---------- */
+.output {
+  width: 100%;
+  max-width: 920px;
+  padding: clamp(1.5rem, 5vw, 3.25rem);
+  background: var(--surface-solid);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  color: var(--ink-soft);
+  font-size: 1rem;
+  animation: reveal 0.45s ease-out both;
+}
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.output h1 {
+  margin: 0 0 1.25rem;
+  font-size: clamp(1.7rem, 4vw, 2.2rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  color: var(--ink);
+}
+.output h2 {
+  margin: 2.5rem 0 0.9rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--line);
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+}
+.output h3 { margin: 1.5rem 0 0.5rem; font-size: 1.05rem; color: var(--ink); }
+.output p { margin: 0.6rem 0; }
+.output strong { color: var(--ink); font-weight: 650; }
+
+.output ul, .output ol { padding-left: 1.4rem; margin: 0.6rem 0; }
+.output li { margin: 0.3rem 0; }
+.output li::marker { color: var(--accent); }
+
+.output a { color: var(--accent); text-underline-offset: 3px; }
+
+.output code {
+  padding: 0.15em 0.45em;
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  font-size: 0.84em;
+  color: var(--accent);
+  background: var(--code-bg);
+  border-radius: 6px;
+}
+.output pre {
+  margin: 1rem 0;
+  padding: 1.1rem 1.25rem;
+  overflow-x: auto;
+  background: var(--code-bg);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  line-height: 1.55;
+}
+.output pre code {
+  padding: 0;
+  color: var(--ink);
+  background: none;
+  font-size: 0.85rem;
+}
+
+.table-wrap {
+  margin: 1.1rem 0;
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.output table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+.output th,
+.output td {
+  padding: 0.7rem 1rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--line);
+}
+.output th {
+  font-weight: 700;
+  color: var(--ink);
+  background: var(--code-bg);
+  white-space: nowrap;
+}
+.output tbody tr:last-child td { border-bottom: 0; }
+.output tbody tr:hover td { background: var(--accent-soft); }
+
+.mermaid-box {
+  margin: 1.25rem 0;
+  padding: 1.25rem;
+  overflow-x: auto;
+  text-align: center;
+  background: var(--code-bg);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.mermaid-box svg { max-width: 100%; height: auto; }
+
+/* ---------- Small screens & motion ---------- */
+@media (max-width: 520px) {
+  .page.has-result { padding-top: 1.5rem; }
+  .output th { white-space: normal; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
